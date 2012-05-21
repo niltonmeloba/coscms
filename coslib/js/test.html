@@ -1,0 +1,2654 @@
+8000
+<head>
+    
+    <title>Twitter / Search - javascript</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+
+
+  
+    <meta name="description" content="Instantly connect to what's most important to you. Follow your friends, experts, favorite celebrities, and breaking news.">
+  
+
+
+
+  <link rel="dns-prefetch" href="http://a0.twimg.com">
+
+  <link rel="dns-prefetch" href="http://api.twitter.com">
+
+
+<script async="" src="http://www.google-analytics.com/ga.js"></script><script id="LR2" type="text/javascript" async="" src="http://a0.twimg.com/c/phoenix/en/bundle/t1-hogan-more.6706ca57d175fce07f6264c276bffdd4.js"></script><script id="LR1" type="text/javascript" async="" src="http://a0.twimg.com/c/phoenix/en/bundle/t1-hogan-core.417958301d89509a3fcc3dd28191a573.js"></script><script type="text/javascript" charset="utf-8">
+  
+  
+  document.domain = 'twitter.com';
+
+  // this will be copied to twttr.appStartTime once our JS has started up
+  document.startTime = new Date().getTime();
+  var twttr = {};
+  twttr.versionName = 'phoenix';
+  twttr.isT1 = true;
+  twttr.didPingKeynote = false;
+  twttr.keynoteTTFTPing = function() {
+    if (!twttr.didPingKeynote && window.location.href.indexOf('keynoteTest') > 0) {
+      var image = document.createElement('img');
+      image.src = '/images/keynote.gif';
+      twttr.didPingKeynote = true;
+    }
+  }
+
+  window.console||function(){var a=["log","debug","info","warn","error","assert","dir","dirxml","group","groupEnd","time","timeEnd","count","trace","profile","profileEnd"];window.console={};for(var b=0;b<a.length;++b)window.console[a[b]]=function(){}}();
+
+  
+
+</script>
+
+
+
+<script type="text/javascript">(function(){window.setTimeout=window.setTimeout,window.setInterval=window.setInterval,window.WATCH=function(a,b){typeof b=="undefined"&&(b=a,a=undefined),typeof a=="string"&&(WATCH._didExecute[a]=!0),WATCH._attempt(this,b)},WATCH._didExecute={},WATCH._reportCount=0,WATCH._reportLimit=25,WATCH._reportInterval=6e4,WATCH._active=!1,WATCH.activate=function(a){typeof a=="undefined"&&(a=!0),WATCH._active=a,extend(WATCH,WATCH._active?WATCH.actives:WATCH.inactives)},WATCH.actives={},WATCH.inactives={};var extend=function(a,b){for(var c in b)a[c]=b[c]},noop=function(){};WATCH._attempt=function(a,b){arguments.length<2&&(b=a,a=window);if(WATCH._active)try{b.apply(a)}catch(c){WATCH._triggerError(c)}else b.apply(a)},WATCH.inactives.end=noop,WATCH.actives.end=function(a){if(typeof a=="undefined")throw new Error("WATCH.end() requires a label");WATCH._didExecute[a]?WATCH._didExecute[a]=!1:WATCH._active&&WATCH._triggerError(new Error('WATCH.end("'+a+'") called without successful call to WATCH("'+a+'", fn(){...}) - a SyntaxError probably just happened')),WATCH._didExecute[a]=!1},WATCH.inactives.callback=function(a,b){return typeof b=="undefined"?a:b},WATCH.actives.callback=function(that,callback){arguments.length===1&&(callback=that,that=this),typeof callback=="string"&&(callback=function(stringVersion){return function(){eval(stringVersion)}}(callback));var watchedCallback=function(){var a=this,b=arguments,c;return WATCH._attempt(function(){c=callback.apply(a,b)}),c};return watchedCallback.isWatched=!0,watchedCallback},WATCH._onErrorCallbacks={},WATCH.inactives._addOnError=noop,WATCH.actives._addOnError=function(a){var b=WATCH._unique();return WATCH._onErrorCallbacks[b]=a,b},WATCH.inactives._removeOnError=noop,WATCH.actives._removeOnError=function(a){delete WATCH._onErrorCallbacks[a]},WATCH._lastUnique=-1,WATCH._unique=function(){return++WATCH._lastUnique},WATCH.inactives.jQuery=noop,WATCH.actives.jQuery=function(){WATCH._originalJQueryEventAdd=WATCH._originalJQueryEventAdd||jQuery.event.add,jQuery.event.add=function(){var a=Array.prototype.slice.call(arguments);return typeof a[2]=="function"?a[2]=WATCH.callback(a[2]):a&&typeof a[2]=="object"&&a[2].handler&&(a[2].handler=WATCH.callback(a[2].handler)),WATCH._originalJQueryEventAdd.apply(this,a)},WATCH._originalJQueryAjax=WATCH._originalJQueryAjax||jQuery.ajax,jQuery.ajax=function(a){return jQuery.each(["complete","error","success"],function(b,c){if(!a[c])return;a[c]=WATCH.callback(a[c])}),WATCH._originalJQueryAjax.apply(this,arguments)}},WATCH.inactives.undoJQuery=noop,WATCH.actives.undoJQuery=function(){jQuery.event.add=WATCH._originalJQueryEventAdd,jQuery.ajax=WATCH._originalJQueryAjax},WATCH._previousErrors={};var escapeDoubleQuotes=function(a){return a.toString().replace('"','\\"')},stringifyLite=function(a){var b="{",c=!1;for(var d in a){if(typeof a[d]=="undefined"||a[d]===null)continue;b+=(c?',"':'"')+escapeDoubleQuotes(d)+'":"'+escapeDoubleQuotes(a[d])+'"',c=!0}return b+"}"};WATCH._scribeError=function(a){if(WATCH._previousErrors[a.error]&&new Date-WATCH._previousErrors[a.error]<WATCH._reportInterval)return!1;if(WATCH.reportLimit<=WATCH.reportCount)return;WATCH.reportCount++;if(!document.location.hostname.match(/(^(www|api)\.)?twitter\.com$/))return;WATCH._previousErrors[a.error]=new Date,a.product_name="webclient",a.type="js_error",a.url=window.location.href,a.event_name="test";var b=document.location.hostname.match(/(^(www|api|staging\d+.local)\.)twitter\.com$/)!=null,c=b?"scribe.twitter.com":window.location.host,d=(window.location.protocol.match(/s\:$/)?"https":"http")+"://"+c;d+=b?"/":"/scribe",d+="?category=client_watch_error&log="+encodeURIComponent(stringifyLite(a))+"&ts="+(new Date).getTime(),(new Image).src=d},WATCH._triggerError=function(a){var b=!0,c={error:a};for(var d in WATCH._onErrorCallbacks)try{WATCH._onErrorCallbacks[d](c)===!1&&(b=!1)}catch(e){c.callbackFailure=!0}WATCH._scribeError(c);if(b)throw a},WATCH.inactives.natives=noop,WATCH.actives.natives=function(){window.setInterval=WATCH._watchedSetInterval,window.setTimeout=WATCH._watchedSetTimeout},WATCH.inactives.undoNatives=noop,WATCH.actives.undoNatives=function(){window.setInterval=WATCH._originalSetInterval,window.setTimeout=WATCH._originalSetTimeout},WATCH._originalSetInterval=window.setInterval,WATCH._originalSetTimeout=window.setTimeout,WATCH._watchedSetInterval=function(a,b){var c=WATCH._originalSetInterval;return c(WATCH.callback(a),b)},WATCH._watchedSetTimeout=function(a,b){var c=WATCH._originalSetTimeout;return c(WATCH.callback(a),b)},WATCH.activate(!1)})();</script>
+<script type="text/javascript">
+  
+</script>
+
+
+
+  <script>
+function bust () {
+  document.write = "";
+  window.top.location = window.self.location;
+  setTimeout(function() {
+    document.body.innerHTML = '';
+    }, 0);
+  window.self.onload = function(evt) {
+    document.body.innerHTML = '';
+  };
+}
+if (window.top !== window.self) { // are you trying to put self in an iframe?
+  try {
+    if (window.top.location.host) { // this is illegal to access unless you share a non-spoofable document domain
+      // fun times
+    } else {
+      bust(); // chrome executes this
+    }
+  } catch (ex) {
+    bust(); // everyone executes this
+  }
+}
+</script>
+
+
+
+
+
+
+  <link href="/phoenix/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+
+<base href="http://twitter.com">
+
+
+    
+      
+
+      
+      
+        <link rel="stylesheet" href="http://a0.twimg.com/a/1337387412/t1/css/t1_core_logged_out.bundle.css" type="text/css" media="screen">
+      
+    
+    
+
+    
+      <link rel="canonical" href="https://twitter.com/">
+    
+
+    
+      <noscript>
+        
+          &lt;meta http-equiv=refresh content="0; URL=/?_twitter_noscript=1" /&gt;
+        
+      </noscript>
+    
+
+    
+
+    
+      <script>(function(){var a=document.getElementsByTagName("html")[0],b=window.location.hash.split("?")[0],c=b.match(/#/)&&b.replace(/#[!]?[\/]?/,"")!=="";c?a.className+=" remove-prerendered-content":(a.className+=" use-prerendered-content",a.getAttribute("data-nav-highlight-class-name")&&(a.className+=" "+a.getAttribute("data-nav-highlight-class-name")))})();</script>
+    
+
+
+    
+  <link rel="stylesheet" href="http://a0.twimg.com/a/1337387412/t1/css/t1_more.bundle.css" type="text/css" media="screen">
+
+
+
+
+    <script>var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-30775-6"],["_trackPageview"],["_setDomainName","twitter.com"]),twttr.didInsertGA=!1,twttr.insertGAScriptElement=function(){if(!twttr.didInsertGA){var a=document.getElementsByTagName("script")[0],b=document.createElement("script");b.async=!0,b.src=(document.location.protocol=="https:"?"https://ssl":"http://www")+".google-analytics.com/ga.js",a.parentNode.insertBefore(b,a),twttr.didInsertGA=!0}},twttr.trackPageView=function(a){var b=["_trackPageview"];a&&b.push(a),_gaq.push(b)};</script>
+  </head>
+
+  <body class="t1   logged-out   front-random-image-iphone-concert  webkit default-theme"><iframe tabindex="-1" role="presentation" style="position:absolute;top:-9999px;" src="http://api.twitter.com/receiver.html"></iframe>
+  <div id="doc" class="route-search">
+    <div class="topbar js-topbar">
+  <div id="banners" class="js-banners">
+    
+    
+    
+    
+  </div>
+  <div class="global-nav" data-section-term="top_nav">
+    <div class="global-nav-inner">
+      <div class="container">
+      
+        
+      
+      
+
+      
+        <ul class="nav js-global-actions">
+          <li class="home" data-global-action="t1home">
+            <a href="/" data-nav="front">
+              <span><i class="nav-home-logged-out"></i></span>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav secondary-nav session-dropdown" id="session">
+          <li class="dropdown js-session">
+            <a class="dropdown-toggle dropdown-signin" id="signin-link" href="#" data-nav="login">
+              <small>Have an account?</small> Sign in <span class="caret"></span>
+            </a>
+            <a class="dropdown-signup" id="signup-link" href="https://twitter.com/signup?context=login" data-nav="signup">
+              <small>New to Twitter?</small><span class="emphasize"> Join Today »</span>
+            </a>
+            <ul class="dropdown-menu dropdown-form" id="signin-dropdown">
+              <li class="dropdown-caret right">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+              </li>
+              <li>
+                <form action="https://twitter.com/sessions?phx=1" class="js-signin signin" method="post">
+  <fieldset class="textbox">
+  <label class="username js-username">
+    <span>Username or email</span>
+    <input class="js-username-field email-input" type="text" value="" name="session[username_or_email]" autocomplete="on">
+  </label>
+  <label class="password js-password">
+    <span>Password</span>
+    <input class="js-password-field" type="password" value="" name="session[password]">
+  </label>
+</fieldset>
+
+  <fieldset class="subchck">
+  <label class="remember">
+    <input type="checkbox" value="1" name="remember_me">
+    <span>Remember me</span>
+  </label>
+  <button type="submit" class="btn submit">Sign in</button>
+</fieldset>
+
+<input type="hidden" name="scribe_log">
+<input type="hidden" name="redirect_after_login" value="">
+<input type="hidden" value="8d1c484c4b0f25d7afe01ee9fdaa6133a53d2fd5" name="authenticity_token">
+
+  <div class="divider"></div>
+  <p>
+    <a class="forgot" href="/account/resend_password">Forgot password?</a><br>
+    <a class="mobile has-sms" href="/account/complete">Already using Twitter via text message?</a>
+  </p>
+</form>
+
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav secondary-nav language-dropdown">
+          <li class="dropdown js-language-dropdown">
+            <a class="dropdown-toggle" href="javascript:;">
+              <small>Language:</small>
+              <span class="js-current-language">English</span>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-caret right">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+              </li>
+              
+                <li><a href="?lang=id" data-lang-code="id" title="Indonesian" class="js-language-link">Bahasa Indonesia</a></li>
+              
+                <li><a href="?lang=msa" data-lang-code="msa" title="Malay" class="js-language-link">Bahasa Melayu</a></li>
+              
+                <li><a href="?lang=da" data-lang-code="da" title="Danish" class="js-language-link">Dansk</a></li>
+              
+                <li><a href="?lang=de" data-lang-code="de" title="German" class="js-language-link">Deutsch</a></li>
+              
+                <li><a href="?lang=es" data-lang-code="es" title="Spanish" class="js-language-link">Español</a></li>
+              
+                <li><a href="?lang=fil" data-lang-code="fil" title="Filipino" class="js-language-link">Filipino</a></li>
+              
+                <li><a href="?lang=it" data-lang-code="it" title="Italian" class="js-language-link">Italiano</a></li>
+              
+                <li><a href="?lang=hu" data-lang-code="hu" title="Hungarian" class="js-language-link">Magyar</a></li>
+              
+                <li><a href="?lang=nl" data-lang-code="nl" title="Dutch" class="js-language-link">Nederlands</a></li>
+              
+                <li><a href="?lang=no" data-lang-code="no" title="Norwegian" class="js-language-link">Norsk</a></li>
+              
+                <li><a href="?lang=pl" data-lang-code="pl" title="Polish" class="js-language-link">Polski</a></li>
+              
+                <li><a href="?lang=pt" data-lang-code="pt" title="Portuguese" class="js-language-link">Português</a></li>
+              
+                <li><a href="?lang=fi" data-lang-code="fi" title="Finnish" class="js-language-link">Suomi</a></li>
+              
+                <li><a href="?lang=sv" data-lang-code="sv" title="Swedish" class="js-language-link">Svenska</a></li>
+              
+                <li><a href="?lang=tr" data-lang-code="tr" title="Turkish" class="js-language-link">Türkçe</a></li>
+              
+                <li><a href="?lang=fr" data-lang-code="fr" title="French" class="js-language-link">français</a></li>
+              
+                <li><a href="?lang=ru" data-lang-code="ru" title="Russian" class="js-language-link">Русский</a></li>
+              
+                <li><a href="?lang=he" data-lang-code="he" title="Hebrew" class="js-language-link">עִבְרִית</a></li>
+              
+                <li><a href="?lang=ur" data-lang-code="ur" title="Urdu" class="js-language-link">اردو</a></li>
+              
+                <li><a href="?lang=ar" data-lang-code="ar" title="Arabic" class="js-language-link">العربية</a></li>
+              
+                <li><a href="?lang=fa" data-lang-code="fa" title="Farsi" class="js-language-link">فارسی</a></li>
+              
+                <li><a href="?lang=hi" data-lang-code="hi" title="Hindi" class="js-language-link">हिन्दी</a></li>
+              
+                <li><a href="?lang=th" data-lang-code="th" title="Thai" class="js-language-link">ภาษาไทย</a></li>
+              
+                <li><a href="?lang=ja" data-lang-code="ja" title="Japanese" class="js-language-link">日本語</a></li>
+              
+                <li><a href="?lang=zh-cn" data-lang-code="zh-cn" title="Simplified Chinese" class="js-language-link">简体中文</a></li>
+              
+                <li><a href="?lang=zh-tw" data-lang-code="zh-tw" title="Traditional Chinese" class="js-language-link">繁體中文</a></li>
+              
+                <li><a href="?lang=ko" data-lang-code="ko" title="Korean" class="js-language-link">한국어</a></li>
+              
+            </ul>
+            <div class="js-front-language">
+              <form action="/sessions/change_locale" class="language" method="POST">
+                <input type="hidden" name="lang">
+                <input type="hidden" name="redirect">
+                <input type="hidden" name="authenticity_token" value="8d1c484c4b0f25d7afe01ee9fdaa6133a53d2fd5">
+              </form>
+            </div>
+          </li>
+        </ul>
+        
+        
+        <div class="pull-right">
+          <form class="form-search js-search-form" action="/search" id="global-nav-search">
+  <span class="search-icon js-search-action">
+    <i class="nav-search"></i>
+  </span>
+  
+  <input class="search-input" type="text" id="search-query" placeholder="Search" name="q" autocomplete="off" spellcheck="false">
+  <input disabled="disabled" class="search-input search-hinting-input" type="text" id="search-query-hint" autocomplete="off" spellcheck="false"><div class="dropdown-menu typeahead">
+  <div class="dropdown-caret">
+    <div class="caret-outer"></div>
+    <div class="caret-inner"></div>
+  </div>
+  <div class="dropdown-inner js-typeahead-results">
+  </div>
+</div>
+</form>
+
+        </div>
+      
+
+        
+        <a id="close-all-button" class="close-all-tweets js-close-all-tweets" href="#" original-title="Close all open Tweets" style="display: none; ">
+          <i class="nav-breaker"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="alert-messages " id="message-drawer">
+    
+  </div>
+</div>
+
+    <div id="page-outer" class="">
+      
+        
+          <div class="front-container" id="front-container">
+  <noscript>
+    &lt;div class="front-no-js-warn"&gt;
+      &lt;h3&gt;Twitter.com makes heavy use of JavaScript&lt;/h3&gt;
+      &lt;p&gt;If you cannot enable it in your browser's preferences, you may have a better experience on our &lt;a href="http://m.twitter.com"&gt;mobile site&lt;/a&gt;.&lt;/p&gt;
+    &lt;/div&gt;
+  </noscript>
+
+  <div class="front-card">
+    <div class="front-welcome">
+      
+        <div class="front-welcome-text">
+          <h1>Welcome to Twitter.</h1>
+          <p>Find out what’s happening, right now, with the people and organizations you care about.</p>
+        </div>
+      
+    </div>
+
+    <div class="front-signin js-front-signin">
+      <form action="https://twitter.com/sessions?phx=1" class="signin" method="post">
+        <div class="placeholding-input username">
+          <input type="text" class="text-input email-input" name="session[username_or_email]" title="Username or email" autocomplete="on">
+          <span class="placeholder">Username or email</span>
+        </div>
+
+        <table class="flex-table password-signin">
+          <tbody>
+            <tr>
+              <td class="flex-table-primary">
+                <div class="placeholding-input password flex-table-form">
+                  <input type="password" class="text-input flex-table-input" name="session[password]" title="Password">
+                  <span class="placeholder">Password</span>
+                </div>
+              </td>
+              <td class="flex-table-secondary">
+                <button type="submit" class="submit btn primary-btn flex-table-btn js-submit">Sign in</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="remember-forgot">
+          <label class="remember">
+            <input type="checkbox" value="1" name="remember_me">
+            <span>Remember me</span>
+          </label>
+          <span class="separator">·</span>
+          <a class="forgot" href="/account/resend_password">Forgot password?</a>
+        </div>
+
+        
+
+        <input type="hidden" name="scribe_log">
+        <input type="hidden" name="redirect_after_login" value="">
+        <input type="hidden" value="8d1c484c4b0f25d7afe01ee9fdaa6133a53d2fd5" name="authenticity_token">
+      </form>
+    </div>
+
+    <div class="front-signup js-front-signup">
+      <h2><strong>New to Twitter?</strong> Sign up</h2>
+
+      <form action="https://twitter.com/signup" class="signup" method="post">
+        <div class="placeholding-input">
+          <input type="text" class="text-input" autocomplete="off" name="user[name]" maxlength="20">
+          <span class="placeholder">Full name</span>
+        </div>
+        <div class="placeholding-input">
+          <input type="text" class="text-input email-input" autocomplete="off" name="user[email]">
+          <span class="placeholder">Email</span>
+        </div>
+        <div class="placeholding-input">
+          <input type="password" class="text-input" name="user[user_password]">
+          <span class="placeholder">Password</span>
+        </div>
+
+        <input type="hidden" value="front" name="context">
+        <input type="hidden" value="8d1c484c4b0f25d7afe01ee9fdaa6133a53d2fd5" name="authenticity_token">
+        <button type="submit" class="btn signup-btn">
+          Sign up for Twitter
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer inline-list">
+  <ul>
+    <li><a href="/about">About</a><span class="dot divider"> ·</span></li>
+    <li><a href="//support.twitter.com">Help</a><span class="dot divider"> ·</span></li>
+    <li><a href="http://blog.twitter.com">Blog</a><span class="dot divider"> ·</span></li>
+
+    
+      <li><a href="/download">Mobile</a><span class="dot divider"> ·</span></li>
+    
+
+    <li><a href="http://status.twitter.com">Status</a><span class="dot divider"> ·</span></li>
+
+    <li><a href="/jobs">Jobs</a><span class="dot divider"> ·</span></li>
+    <li><a href="/tos">Terms</a><span class="dot divider"> ·</span></li>
+    <li><a href="/privacy">Privacy</a><span class="dot divider"> ·</span></li>
+
+    
+
+    <li><a href="//business.twitter.com/en/advertise/start">Advertisers</a><span class="dot divider"> ·</span></li>
+    <li><a href="//business.twitter.com/index_en.html">Businesses</a><span class="dot divider"> ·</span></li>
+    <li><a href="http://media.twitter.com">Media</a><span class="dot divider"> ·</span></li>
+    <li><a href="//dev.twitter.com">Developers</a><span class="dot divider"> ·</span></li>
+    <li><a href="/about/resources">Resources</a><span class="dot divider"> ·</span></li>
+    <li><span class="copyright">© 2012 Twitter</span></li>
+  </ul>
+  
+</div>
+
+</div>
+
+        
+      
+      <div id="page-container" class="wrapper"><div><div class="dashboard">
+<div class="component" data-component-term="signup_call_out"><div class="module signup-call-out search-signup-call-out">
+  <div class="flex-module">
+    <div class="flex-module-header profile-signup">
+      <h2>Get instant updates on javascript <small>Join Twitter today</small></h2>
+    </div>
+    <form action="https://twitter.com/signup" class="clearfix signup" method="post">
+  <div class="holding name">
+    <input type="text" autocomplete="off" name="user[name]" maxlength="20">
+    <span class="holder">Full name</span>
+  </div>
+  <div class="holding email">
+    <input class="email-input" type="text" autocomplete="off" name="user[email]">
+    <span class="holder">Email</span>
+  </div>
+  <div class="holding password">
+    <input type="password" name="user[user_password]">
+    <span class="holder">Password</span>
+  </div>
+  <input type="hidden" value="search" name="context">
+  <input type="hidden" value="8cad47ada684c31e71cd27cc643a392f26fb05f7" name="authenticity_token">
+  <input type="submit" class="btn signup-btn js-submit js-signup-btn" value="Sign up" tabindex="0">
+  
+</form>
+  </div>
+</div></div><div class="component" data-component-term="search_nav"><div class="module search-nav">
+  <ul class="js-items-container">
+        <li class="js-sidenav-link active" data-name="searchResults" data-element-term="tweets_item">
+  <a class="list-link" href="/#!/search/javascript">
+    Tweets
+            
+            <i class="chev-right"></i>
+    
+          </a>
+</li>        <li class="js-sidenav-link" data-name="userSearch" data-element-term="people_item">
+  <a class="list-link" href="/#!/search/users/javascript">
+    People
+            
+            <i class="chev-right"></i>
+    <span class="js-metadata metadata"><div class="component" data-component-term="avatar_row"><div class="avatar-row">
+      <span class="js-user-profile-link user-thumb" href="/#!/JavaScriptDaily" data-user-id="459275531">
+        <img class="avatar size32 js-bubble-event js-user-tipsy js-tooltip" src="http://a0.twimg.com/profile_images/1743578295/jsdaily_normal.gif" alt="JavaScript Daily" original-title="JavaScript Daily">
+      </span>
+      <span class="js-user-profile-link user-thumb" href="/#!/javascript_news" data-user-id="17443473">
+        <img class="avatar size32 js-bubble-event js-user-tipsy js-tooltip" src="http://a0.twimg.com/profile_images/64724299/Bild_3_normal.png" alt="JavaScript News" original-title="JavaScript News">
+      </span>
+      <span class="js-user-profile-link user-thumb" href="/#!/badass_js" data-user-id="155949717">
+        <img class="avatar size32 js-bubble-event js-user-tipsy js-tooltip" src="http://a0.twimg.com/profile_images/992710302/avatar_normal.png" alt="Badass JavaScript" original-title="Badass JavaScript">
+      </span>
+      <span class="js-user-profile-link user-thumb" href="/#!/github_js" data-user-id="253770594">
+        <img class="avatar size32 js-bubble-event js-user-tipsy js-tooltip" src="http://a0.twimg.com/profile_images/1261115886/github_js_normal.png" alt="GitHub JavaScript" original-title="GitHub JavaScript">
+      </span>
+      <span class="js-user-profile-link user-thumb" href="/#!/del_javascript" data-user-id="23282663">
+        <img class="avatar size32 js-bubble-event js-user-tipsy js-tooltip" src="http://a0.twimg.com/profile_images/90410047/clouds2_normal.jpg" alt="Javascript News" original-title="Javascript News">
+      </span>
+      <span class="js-user-profile-link user-thumb" href="/#!/jasminebdd" data-user-id="158465486">
+        <img class="avatar size32 js-bubble-event js-user-tipsy js-tooltip" src="http://a0.twimg.com/profile_images/1017467387/jasmine_minilogo_normal.png" alt="Jasmine JavaScript" original-title="Jasmine JavaScript">
+      </span>
+      <span class="js-user-profile-link user-thumb" href="/#!/jsrocks" data-user-id="19035653">
+        <img class="avatar size32 js-bubble-event js-user-tipsy js-tooltip" src="http://a0.twimg.com/profile_images/71618812/rocket_normal.png" alt="JavaScript Rocks!" original-title="JavaScript Rocks!">
+      </span>
+</div></div></span>
+          </a>
+</li>  <div class="component" data-component-term="search_facets"><li class="facets-media-not-displayed list-link" style="">
+ <div>
+   <a class="header">Popular images &amp; videos</a>
+   <p class="not-displayed-text metadata">These results include media shared by people you don’t follow.</p>
+   <a class="btn small display-this-media">
+     Display media
+   </a>
+ </div>
+</li><div class="component" data-component-term="photos_search_facets"></div><div class="component" data-component-term="videos_search_facets"></div></div></ul>
+</div></div><div class="module trends  component" style="" data-component-term="trends">
+  <div class="flex-module trends-inner">
+    <div class="flex-module-header">
+  
+  <h3> <span class="js-trend-location" woeid="1">Worldwide trends</span> </h3>
+    <small>· <a href="#" data-modal="change-trends" class="change-trends js-trend-toggle">Change</a></small>
+</div>
+<div class="flex-module-inner">
+  <ul class="trend-items js-trends"><li class="js-trend-item " data-trend-name="Fenerbahçe Türkiye Cumhuriyeti'dir">
+    <a href="/#!/search/%22Fenerbah%C3%A7e%20T%C3%BCrkiye%20Cumhuriyeti'dir%22" data-query-source="trend_click">Fenerbahçe Türkiye Cumhuriyeti'dir</a>
+</li><li class="js-trend-item " data-trend-name="La #MarchaYoSoy132">
+    <a href="/#!/search/%22La%20%23MarchaYoSoy132%22" data-query-source="trend_click">La #MarchaYoSoy132</a>
+</li><li class="js-trend-item " data-trend-name="#YouOutYoDamnMindIf">
+    <a href="/#!/search/%23YouOutYoDamnMindIf" data-query-source="trend_click">#YouOutYoDamnMindIf</a>
+</li><li class="js-trend-item " data-trend-name="#MoviesThatDescribeOomf">
+    <a href="/#!/search/%23MoviesThatDescribeOomf" data-query-source="trend_click">#MoviesThatDescribeOomf</a>
+</li><li class="js-trend-item " data-trend-name="#ASKALEX">
+    <a href="/#!/search/%23ASKALEX" data-query-source="trend_click">#ASKALEX</a>
+</li><li class="js-trend-item " data-trend-name="Stan Van Gundy">
+    <a href="/#!/search/%22Stan%20Van%20Gundy%22" data-query-source="trend_click">Stan Van Gundy</a>
+</li><li class="js-trend-item " data-trend-name="Justin Will Always Be A Winner">
+    <a href="/#!/search/%22Justin%20Will%20Always%20Be%20A%20Winner%22" data-query-source="trend_click">Justin Will Always Be A Winner</a>
+</li><li class="js-trend-item " data-trend-name="Silent Library">
+    <a href="/#!/search/%22Silent%20Library%22" data-query-source="trend_click">Silent Library</a>
+</li><li class="js-trend-item " data-trend-name="Bill Stewart">
+    <a href="/#!/search/%22Bill%20Stewart%22" data-query-source="trend_click">Bill Stewart</a>
+</li><li class="js-trend-item " data-trend-name="Coda 2">
+    <a href="/#!/search/%22Coda%202%22" data-query-source="trend_click">Coda 2</a>
+</li></ul>
+</div>
+</div></div><div class="component" data-component-term="footer"><div class="module site-footer ">
+  <div class="flex-module">
+    <div class="flex-module-inner js-items-container">
+      <p class="twitter-logo">
+        <i class="wordmark-secondary"></i>
+      </p>
+      <ul class="clearfix">
+        <li class="copyright">© 2012 Twitter</li>
+        <li><a href="/about">About</a></li>
+        <li><a href="//support.twitter.com">Help</a></li>
+        <li><a href="/tos">Terms</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="http://blog.twitter.com">Blog</a></li>
+        <li><a href="http://status.twitter.com">Status</a></li>
+        <li><a href="/download">Apps</a></li>
+        <li><a href="/about/resources">Resources</a></li>
+        <li><a href="/jobs">Jobs</a></li>
+        <li><a href="//business.twitter.com/en/advertise/start">Advertisers</a></li>
+        <li><a href="//business.twitter.com/index_en.html">Businesses</a></li>
+        <li><a href="http://media.twitter.com">Media</a></li>
+        <li><a href="//dev.twitter.com">Developers</a></li>
+      </ul>
+    </div>
+  </div>
+</div></div></div>
+<div class="content-main js-content-main breakable">
+  <div id="js-promptbird-below-black-bar-hook"></div>
+  <div id="js-empty-timeline-recommendations-module-hook"></div>
+  <div class="content-header js-stream-header"><div class="header-inner">
+    <div class="search-header ddg-192-new-header js-search-header">
+      <div class="btn-group pull-right js-search-dropdown">
+        <button type="button" class="dropdown btn btn-search-actions js-search-dropdown-button">
+          <i class="search-toggle"></i>
+        </button>
+        <ul class="dropdown-menu btn-group-dropdown js-combo-btn-dropdown-options">
+          <li><a class="js-toggle-saved-search-link" href="#">Save search</a></li>
+          <li><a href="/#!/search-advanced">Advanced search</a></li>
+        </ul>
+      </div>
+      <h2 class="search-title js-search-title">Results for <strong class="search-query">javascript</strong></h2>
+    </div>
+
+  <div class="onebox ddg-192-new-header" style="display: none; ">
+  <div class="js-onebox-container onebox-inner ddg-192-new-header"></div>
+</div>
+  <h2>
+    <span class="content-header-buttons js-header-button-container"></span>
+    
+    
+    <span class="js-stream-title">Tweets</span>&nbsp;<small class="view-toggler js-view-toggler"><a class="toggle-item-1 active" href="/#!/search/javascript" title="Find the most relevant tweets">Top</a> / <a class="toggle-item-2 " href="/#!/search/realtime/javascript" title="Find the most recent tweets">All</a></small>
+  </h2>
+</div></div>
+  <div class="stream js-stream-manager-container">
+  <div class="js-stream-manager" id="search-stream-manager"><div class="stream-title"></div><div class="stream-container"><div class="stream" data-component-term="stream">
+  
+  <div class="js-stream-items stream-items" id="stream-items-id"><div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204553468017520640" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204553468017520640" data-item-id="204553468017520640" data-screen-name="smashingmag" data-user-id="15736190" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/smashingmag/status/204553468017520640" class="tweet-timestamp js-permalink" title="2:45 PM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337604321000" data-long-form="true">7h</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/smashingmag" data-user-id="15736190">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/2223406485/back10b_normal.png" alt="Smashing Magazine">
+    <strong class="fullname js-action-profile-name show-popup-with-id">Smashing Magazine</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>smashingmag</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">Useful: Front-end Unit Testing with <strong>JavaScript</strong> - <a href="http://t.co/XiSMoG09" data-expanded-url="http://bit.ly/IROBMa" title="http://bit.ly/IROBMa" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://dannycroft.co.uk/front-end-unit-testing-with-javascript">bit.ly/IROBMa</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/smashingmag/status/204553468017520640">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204661627889528832" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204661627889528832" data-item-id="204661627889528832" data-screen-name="smashingmag" data-user-id="15736190" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/smashingmag/status/204661627889528832" class="tweet-timestamp js-permalink" title="9:55 PM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337630109000" data-long-form="true">32m</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/smashingmag" data-user-id="15736190">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/2223406485/back10b_normal.png" alt="Smashing Magazine">
+    <strong class="fullname js-action-profile-name show-popup-with-id">Smashing Magazine</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>smashingmag</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">Kinesis.io: a library for building gesture-driven Web apps with HTML and <strong>JavaScript</strong> - <a href="http://t.co/zg10ahp5" data-expanded-url="http://bit.ly/Kb8usk" title="http://bit.ly/Kb8usk" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://kinesis.io/home">bit.ly/Kb8usk</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/smashingmag/status/204661627889528832">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204660097027280898" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204660097027280898" data-item-id="204660097027280898" data-screen-name="chockenberry" data-user-id="36183" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/chockenberry/status/204660097027280898" class="tweet-timestamp js-permalink" title="9:49 PM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337629744000" data-long-form="true">38m</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/chockenberry" data-user-id="36183">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/838441522/P9010020_normal.jpg" alt="Craig Hockenberry">
+    <strong class="fullname js-action-profile-name show-popup-with-id">Craig Hockenberry</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>chockenberry</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">I was blown away when <a class="  twitter-atreply pretty-link" data-screen-name="cabel" href="/#!/cabel" rel="nofollow"><s>@</s><b>cabel</b></a> first showed me the Coda Tour. View the source if you love HTML/CSS/<strong>Javascript</strong>: <a href="http://t.co/WIanjyKg" data-expanded-url="http://panic.com/coda/" title="http://panic.com/coda/" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://panic.com/coda">panic.com/coda/</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/chockenberry/status/204660097027280898">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204651096961069056" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204651096961069056" data-item-id="204651096961069056" data-screen-name="envatowebdev" data-user-id="14490962" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/envatowebdev/status/204651096961069056" class="tweet-timestamp js-permalink" title="9:13 PM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337627598000" data-long-form="true">1h</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/envatowebdev" data-user-id="14490962">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/1189513240/web_dev_normal.png" alt="envatowebdev">
+    <strong class="fullname js-action-profile-name show-popup-with-id">envatowebdev</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>envatowebdev</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">Learn about the new <strong>JavaScript</strong> framework, CanJS, today on Nettuts+ <a href="http://t.co/bLuj3D3E" data-expanded-url="http://net.tutsplus.com/tutorials/javascript-ajax/diving-into-canjs/" title="http://net.tutsplus.com/tutorials/javascript-ajax/diving-into-canjs/" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://net.tutsplus.com/tutorials/javascript-ajax/diving-into-canjs">net.tutsplus.com/tutorials/java…</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/envatowebdev/status/204651096961069056">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204649202339422208" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204649202339422208" data-item-id="204649202339422208" data-screen-name="elijahmanor" data-user-id="9453872" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/elijahmanor/status/204649202339422208" class="tweet-timestamp js-permalink" title="9:05 PM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337627146000" data-long-form="true">1h</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/elijahmanor" data-user-id="9453872">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/1829109248/profile_normal.png" alt="$( '#Elijah-Manor' )">
+    <strong class="fullname js-action-profile-name show-popup-with-id">$( '#Elijah-Manor' )</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>elijahmanor</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">Approaching Beta: What's changing in JsRender and JsViews by <a class="  twitter-atreply pretty-link" data-screen-name="borismoore" href="/#!/borismoore" rel="nofollow"><s>@</s><b>borismoore</b></a> <a href="/#!/search/%23javascript" title="#javascript" class="  twitter-hashtag pretty-link" data-query-source="hashtag_click"><s>#</s><b><strong>javascript</strong></b></a> <a href="http://t.co/0d26xgWU" data-expanded-url="http://j.mp/zI1OeC" title="http://j.mp/zI1OeC" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://www.borismoore.com/2012/03/approaching-beta-whats-changing-in_06.html">j.mp/zI1OeC</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/elijahmanor/status/204649202339422208">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204640264143380480" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204640264143380480" data-item-id="204640264143380480" data-screen-name="elijahmanor" data-user-id="9453872" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/elijahmanor/status/204640264143380480" class="tweet-timestamp js-permalink" title="8:30 PM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337625015000" data-long-form="true">1h</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/elijahmanor" data-user-id="9453872">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/1829109248/profile_normal.png" alt="$( '#Elijah-Manor' )">
+    <strong class="fullname js-action-profile-name show-popup-with-id">$( '#Elijah-Manor' )</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>elijahmanor</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">A Gentle Reintroduction to the Reactive Extensions for <a href="/#!/search/%23JavaScript" title="#JavaScript" class="  twitter-hashtag pretty-link" data-query-source="hashtag_click"><s>#</s><b><strong>JavaScript</strong></b></a> by <a class="  twitter-atreply pretty-link" data-screen-name="mattpodwysocki" href="/#!/mattpodwysocki" rel="nofollow"><s>@</s><b>mattpodwysocki</b></a> <a href="http://t.co/xKJDtoMa" data-expanded-url="http://j.mp/JhtU9j" title="http://j.mp/JhtU9j" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://codebetter.com/matthewpodwysocki/2012/05/21/a-gentle-reintroduction-to-the-reactive-extensions-for-javascript">j.mp/JhtU9j</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/elijahmanor/status/204640264143380480">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204633656537522176" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204633656537522176" data-item-id="204633656537522176" data-screen-name="elijahmanor" data-user-id="9453872" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/elijahmanor/status/204633656537522176" class="tweet-timestamp js-permalink" title="8:04 PM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337623440000" data-long-form="true">2h</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/elijahmanor" data-user-id="9453872">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/1829109248/profile_normal.png" alt="$( '#Elijah-Manor' )">
+    <strong class="fullname js-action-profile-name show-popup-with-id">$( '#Elijah-Manor' )</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>elijahmanor</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text"><a href="/#!/search/%23jQuery" title="#jQuery" class="  twitter-hashtag pretty-link" data-query-source="hashtag_click"><s>#</s><b>jQuery</b></a> &amp; <strong>JavaScript</strong> Tools &amp; Plugins Worth Checking Out by <a class="  twitter-atreply pretty-link" data-screen-name="ImpressiveWebs" href="/#!/ImpressiveWebs" rel="nofollow"><s>@</s><b>ImpressiveWebs</b></a> <a href="http://t.co/zaHOtzx7" data-expanded-url="http://j.mp/KX3xIn" title="http://j.mp/KX3xIn" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://www.impressivewebs.com/jquery-javascript-tools-plugins">j.mp/KX3xIn</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/elijahmanor/status/204633656537522176">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204625384728297472" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204625384728297472" data-item-id="204625384728297472" data-screen-name="codylindley" data-user-id="12078532" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/codylindley/status/204625384728297472" class="tweet-timestamp js-permalink" title="7:31 PM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337621468000" data-long-form="true">2h</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/codylindley" data-user-id="12078532">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/1761993154/Screen_shot_2010-09-27_at_1.32.49_PM_normal.png" alt="codylindley">
+    <strong class="fullname js-action-profile-name show-popup-with-id">codylindley</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>codylindley</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">Architect, a <strong>Javascript</strong> template editor - <a href="http://t.co/I2j2sNRd" data-expanded-url="http://bit.ly/KX8uRr" title="http://bit.ly/KX8uRr" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://rolandwarmerdam.co.nz/">bit.ly/KX8uRr</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/codylindley/status/204625384728297472">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204607579438055425" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204607579438055425" data-item-id="204607579438055425" data-screen-name="snookca" data-user-id="12591" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/snookca/status/204607579438055425" class="tweet-timestamp js-permalink" title="6:20 PM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337617223000" data-long-form="true">4h</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/snookca" data-user-id="12591">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/1661618510/jack-avatar_normal.png" alt="Snook">
+    <strong class="fullname js-action-profile-name show-popup-with-id">Snook</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>snookca</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">A CSS3 stopwatch. No <strong>JavaScript</strong> or images. Watch the walkthrough. <a href="http://t.co/DUxFh8zU" data-expanded-url="http://thecodeplayer.com/walkthrough/make-a-stopwatch-using-css3-without-images-or-javascript" title="http://thecodeplayer.com/walkthrough/make-a-stopwatch-using-css3-without-images-or-javascript" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://thecodeplayer.com/walkthrough/make-a-stopwatch-using-css3-without-images-or-javascript">thecodeplayer.com/walkthrough/ma…</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/snookca/status/204607579438055425">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204603579271626754" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204603579271626754" data-item-id="204603579271626754" data-screen-name="codylindley" data-user-id="12078532" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/codylindley/status/204603579271626754" class="tweet-timestamp js-permalink" title="6:04 PM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337616269000" data-long-form="true">4h</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/codylindley" data-user-id="12078532">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/1761993154/Screen_shot_2010-09-27_at_1.32.49_PM_normal.png" alt="codylindley">
+    <strong class="fullname js-action-profile-name show-popup-with-id">codylindley</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>codylindley</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">This course teaches you the basics of <strong>Javascript</strong> in 40 lessons - <a href="http://t.co/QlgOdcqj" data-expanded-url="http://bit.ly/J8GhmI" title="http://bit.ly/J8GhmI" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://www.codeavengers.com/training">bit.ly/J8GhmI</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/codylindley/status/204603579271626754">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204597321521041408" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204597321521041408" data-item-id="204597321521041408" data-screen-name="rauschma" data-user-id="56992811" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/rauschma/status/204597321521041408" class="tweet-timestamp js-permalink" title="5:39 PM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337614777000" data-long-form="true">4h</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/rauschma" data-user-id="56992811">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/1223694079/41470_701060859_7290_n_normal.jpg" alt="Axel Rauschmayer">
+    <strong class="fullname js-action-profile-name show-popup-with-id">Axel Rauschmayer</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>rauschma</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text"><strong>JavaScript</strong> feature matrix: Find out what your and other browsers can do.
+<a href="http://t.co/FM9hPkGJ" data-expanded-url="http://rauschma.github.com/js-feature-matrix/" title="http://rauschma.github.com/js-feature-matrix/" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://rauschma.github.com/js-feature-matrix">rauschma.github.com/js-feature-mat…</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/rauschma/status/204597321521041408">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204585517118013440" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204585517118013440" data-item-id="204585517118013440" data-screen-name="remotesynth" data-user-id="6773532" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/remotesynth/status/204585517118013440" class="tweet-timestamp js-permalink" title="4:52 PM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337611962000" data-long-form="true">5h</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/remotesynth" data-user-id="6773532">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/1630458212/275490_652768114_815882672_n__1__normal.jpg" alt="Brian Rinaldi">
+    <strong class="fullname js-action-profile-name show-popup-with-id">Brian Rinaldi</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>remotesynth</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">There's so much good stuff in this week's huge list of my favorite <strong>JavaScript</strong>, HTML5 &amp; CSS3 posts. <a href="http://t.co/22YoVgWh" data-expanded-url="http://bit.ly/LaPyLL" title="http://bit.ly/LaPyLL" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://www.remotesynthesis.com/post.cfm/best-of-javascript-html5-css3-week-of-may-14-2012">bit.ly/LaPyLL</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/remotesynth/status/204585517118013440">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204517552464986112" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204517552464986112" data-item-id="204517552464986112" data-screen-name="EtnasSoft" data-user-id="158110584" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/EtnasSoft/status/204517552464986112" class="tweet-timestamp js-permalink" title="12:22 PM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337595758000" data-long-form="true">10h</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/EtnasSoft" data-user-id="158110584">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/1281426837/618cb967-8d8b-4ffb-bcd9-e37c2046d845_normal.png" alt="Carlos Benítez">
+    <strong class="fullname js-action-profile-name show-popup-with-id">Carlos Benítez</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>EtnasSoft</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">JSCheck: La herramienta para testear <strong>JavaScript</strong> creada por Douglas Crockford: <a href="http://t.co/TvRh3Bdr" data-expanded-url="http://bit.ly/MafppH" title="http://bit.ly/MafppH" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://net.tutsplus.com/tutorials/javascript-ajax/meet-crockford%E2%80%99s-jscheck">bit.ly/MafppH</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/EtnasSoft/status/204517552464986112">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204498025614295041" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204498025614295041" data-item-id="204498025614295041" data-screen-name="newsycombinator" data-user-id="14335498" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/newsycombinator/status/204498025614295041" class="tweet-timestamp js-permalink" title="11:05 AM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337591103000" data-long-form="true">11h</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/newsycombinator" data-user-id="14335498">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/52589204/y_normal.png" alt="news.yc Popular">
+    <strong class="fullname js-action-profile-name show-popup-with-id">news.yc Popular</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>newsycombinator</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">SpahQL - A query language for <strong>Javascript</strong> objects <a href="http://t.co/UxgrtLAM" data-expanded-url="http://j.mp/Kqx1vK" title="http://j.mp/Kqx1vK" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://angryamoeba.co.uk/spahql-announce">j.mp/Kqx1vK</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/newsycombinator/status/204498025614295041">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="204437630014857217" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="204437630014857217" data-item-id="204437630014857217" data-screen-name="newsycombinator" data-user-id="14335498" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/newsycombinator/status/204437630014857217" class="tweet-timestamp js-permalink" title="7:05 AM - 21 May 12"><span class="_timestamp js-short-timestamp " data-time="1337576703000" data-long-form="true">15h</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/newsycombinator" data-user-id="14335498">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/52589204/y_normal.png" alt="news.yc Popular">
+    <strong class="fullname js-action-profile-name show-popup-with-id">news.yc Popular</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>newsycombinator</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">Stopwatch with only CSS3 - No <strong>javascript</strong> <a href="http://t.co/j6qohA4e" data-expanded-url="http://j.mp/KlsUPm" title="http://j.mp/KlsUPm" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://thecodeplayer.com/walkthrough/make-a-stopwatch-using-css3-without-images-or-javascript">j.mp/KlsUPm</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/newsycombinator/status/204437630014857217">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="203776003141668865" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="203776003141668865" data-item-id="203776003141668865" data-screen-name="smashingmag" data-user-id="15736190" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/smashingmag/status/203776003141668865" class="tweet-timestamp js-permalink" title="11:15 AM - 19 May 12"><span class="_timestamp js-short-timestamp " data-time="1337418959000" data-long-form="true">19 May</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/smashingmag" data-user-id="15736190">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/2223406485/back10b_normal.png" alt="Smashing Magazine">
+    <strong class="fullname js-action-profile-name show-popup-with-id">Smashing Magazine</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>smashingmag</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">That's… unusual: The volunteer-run <strong>JavaScript</strong> Hotline: (877) 300-2187 - <a href="https://t.co/42MF5SC4" data-expanded-url="https://javascript.pockethotline.com/" title="https://javascript.pockethotline.com/" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="https://javascript.pockethotline.com/"><strong>javascript</strong>.pockethotline.com</a> (Chrome says the page is insecure, though)</p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/smashingmag/status/203776003141668865">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="203730041744531456" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="203730041744531456" data-item-id="203730041744531456" data-screen-name="dagda1" data-user-id="12826902" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/dagda1/status/203730041744531456" class="tweet-timestamp js-permalink" title="8:13 AM - 19 May 12"><span class="js-short-timestamp _old-timestamp" data-time="1337408001000" data-long-form="true">19 May</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/dagda1" data-user-id="12826902">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/488401225/n753113573_9726_normal.jpg" alt="dagda1">
+    <strong class="fullname js-action-profile-name show-popup-with-id">dagda1</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>dagda1</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">I'm such an ember.js fanboy, <strong>javascript</strong> has never been so much fun.  Months of backbone.js may have helped me reach this point</p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/dagda1/status/203730041744531456">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="203556053638590464" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="203556053638590464" data-item-id="203556053638590464" data-screen-name="rwaldron" data-user-id="16144669" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/rwaldron/status/203556053638590464" class="tweet-timestamp js-permalink" title="8:41 PM - 18 May 12"><span class="_timestamp js-short-timestamp " data-time="1337366519000" data-long-form="true">18 May</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/rwaldron" data-user-id="16144669">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/732025391/rick_jedi_avatar_normal.jpg" alt="rick waldron">
+    <strong class="fullname js-action-profile-name show-popup-with-id">rick waldron</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>rwaldron</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">Tutorial: Control an Arduino Servo w/ <strong>JavaScript</strong>! <a href="http://t.co/iwmr6rDP" data-expanded-url="http://weblog.bocoup.com/javascript-arduino-servo-control-tutorial/" title="http://weblog.bocoup.com/javascript-arduino-servo-control-tutorial/" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://weblog.bocoup.com/javascript-arduino-servo-control-tutorial">weblog.bocoup.com/<strong>javascript</strong>-ard…</a> <a href="/#!/search/%23node" title="#node" class="  twitter-hashtag pretty-link" data-query-source="hashtag_click"><s>#</s><b>node</b></a>.js <a href="/#!/search/%23johnny" title="#johnny" class="  twitter-hashtag pretty-link" data-query-source="hashtag_click"><s>#</s><b>johnny</b></a>-five</p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/rwaldron/status/203556053638590464">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="203278036253163520" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="203278036253163520" data-item-id="203278036253163520" data-screen-name="googleanalytics" data-user-id="51263711" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/googleanalytics/status/203278036253163520" class="tweet-timestamp js-permalink" title="2:17 AM - 18 May 12"><span class="_timestamp js-short-timestamp " data-time="1337300235000" data-long-form="true">18 May</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/googleanalytics" data-user-id="51263711">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/300745372/analytics-128_normal.png" alt="Google Analytics">
+    <strong class="fullname js-action-profile-name show-popup-with-id">Google Analytics</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>googleanalytics</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">We just published updated Analytics API developer guides in Java, PHP, Python and <strong>Javascript</strong>. Worth a bookmark: <a href="http://t.co/iABZn6gX" data-expanded-url="http://goo.gl/lwm2V" title="http://goo.gl/lwm2V" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="https://developers.google.com/analytics/resources/tutorials/hello-analytics-api">goo.gl/lwm2V</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/googleanalytics/status/203278036253163520">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="202942533007966208" data-item-type="tweet" media="true">
+  
+
+
+  
+
+  <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-hover js-profile-popup-actionable js-original-tweet  
+
+
+
+ with-social-proof" data-tweet-id="202942533007966208" data-item-id="202942533007966208" data-screen-name="garannm" data-user-id="15989423" data-is-reply-to="">
+
+    
+    <i class="dogear"></i>
+
+    
+    <div class="content">
+
+      
+      <div class="stream-item-header">
+        <small class="time">
+    <a href="/#!/garannm/status/202942533007966208" class="tweet-timestamp js-permalink" title="4:04 AM - 17 May 12"><span class="_timestamp js-short-timestamp " data-time="1337220245000" data-long-form="true">17 May</span></a>
+</small>
+          <a class="account-group js-account-group js-action-profile js-user-profile-link" href="/#!/garannm" data-user-id="15989423">
+    <img class="avatar js-action-profile-avatar" src="http://a0.twimg.com/profile_images/1712521918/glitter_normal.jpg" alt="Garann Means">
+    <strong class="fullname js-action-profile-name show-popup-with-id">Garann Means</strong>
+    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>garannm</b></span>
+  </a>
+      </div>
+
+      
+        <p class="js-tweet-text">Dear <strong>JavaScript</strong> community: would love your help with something.. <a href="http://t.co/vmqPBVrv" data-expanded-url="http://www.garann.com/dev/2012/javascript-hotline/" title="http://www.garann.com/dev/2012/javascript-hotline/" target="_blank" rel="nofollow" class="twitter-timeline-link" data-ultimate-url="http://www.garann.com/dev/2012/javascript-hotline">garann.com/dev/2012/javas…</a></p>
+
+      
+      <div class="stream-item-footer">
+        
+        
+
+
+
+        <div class="context">
+</div>
+
+        
+        <a class="details with-icn js-details" href="/#!/garannm/status/202942533007966208">
+          <span class="details-icon js-icon-container">
+          </span>
+          <b>
+            <span class="expand-stream-item js-view-details">
+                  <span class="expand-action-wrapper">
+                    Expand
+                  </span>
+            </span>
+            <span class="collapse-stream-item js-hide-details">
+                  <span class="collapse-action-wrapper">
+                    Collapse
+                  </span>
+            </span>
+          </b>
+        </a>
+
+        
+         <ul class="tweet-actions js-actions">
+  <li class="action-reply-container">
+    <a class="with-icn js-action-reply" data-modal="tweet-reply" href="#" title="Reply">
+      
+      <i class="sm-reply"></i>
+      <b>Reply</b>
+    </a>
+  </li>
+    <li class="action-rt-container">
+      <a class="with-icn js-toggle-rt" data-modal="tweet-retweet" href="#">
+        <i class="sm-rt"></i>
+        
+        <b><span class="undo-retweet" title="Undo retweet">Retweeted</span><span class="retweet" title="Retweet">Retweet</span></b>
+      </a>
+    </li>
+  <li class="action-del-container">
+    <a class="with-icn js-action-del" href="#" title="Delete">
+      <i class="sm-trash"></i>
+      <b>Delete</b>
+    </a>
+  </li>
+  <li class="action-fav-container">
+    <a class="with-icn js-toggle-fav" href="#">
+      <i class="sm-fav"></i>
+      
+      <b><span class="unfavorite" title="Undo favorite">Favorited</span><span class="favorite" title="Favorite">Favorite</span></b>
+    </a>
+  </li>
+</ul>      </div>
+
+      
+      <div class="expanded-content js-tweet-details-dropdown">
+</div>
+    </div>
+  </div>
+
+
+</div></div>
+</div></div></div></div>
+</div>
+</div></div>
+    </div>
+  </div>
+  <div class="twttr-dialog-wrapper"></div>
+
+  
+    
+  
+
+  
+
+
+<script type="text/javascript">WATCH('loadrunner', function() {
+    (function(a,b){function u(a){for(var b=1,c;c=arguments[b];b++)for(var d in c)a[d]=c[d];return a}function v(a){return Array.prototype.slice.call(a)}function x(a,b){for(var c=0,d;d=a[c];c++)if(b==d)return c;return-1}function y(){var a=v(arguments),b=[];for(var c=0,d=a.length;c<d;c++)a[c].length>0&&b.push(a[c].replace(/\/$/,""));return b.join("/")}function z(a,b,c){var d=b.split("/"),e=a;while(d.length>1){var f=d.shift();e=e[f]=e[f]||{}}e[d[0]]=c}function A(){}function B(a,b){a&&(this.id=this.path=this.resolvePath(a)),this.force=!!b}function C(a,b){this.id=a,this.body=b,typeof b=="undefined"&&(this.path=this.resolvePath(a))}function D(a){var b=[];for(var c=0,d;d=a[c];c++)d instanceof F?b=b.concat(D(d.deps)):d instanceof C&&b.push(d);return b}function E(a){this.deps=a,this.deps.length==0&&this.complete()}function F(a){this.deps=a}function G(){for(var a in d)if(d[a].readyState=="interactive")return m[d[a].id]}function H(a,b){var d;return!a&&c&&(d=l||G()),d?(delete m[d.scriptId],d.body=b,d.execute()):(k=d=new C(a,b),j[d.id]=d),d}function I(){var a=v(arguments),b,c;return typeof a[0]=="string"&&(b=a.shift()),c=a.shift(),H(b,c)}function J(a,b){var c=b.id||"",d=c.split("/");d.pop();var e=d.join("/");return a.replace(/^\./,e)}function K(a,b){function d(a){return C.exports[J(a,b)]}var c=[];for(var e=0,f=a.length;e<f;e++){if(a[e]=="require"){c.push(d);continue}if(a[e]=="exports"){b.exports=b.exports||{},c.push(b.exports);continue}c.push(d(a[e]))}return c}function L(){var a=v(arguments),b=[],c,d;typeof a[0]=="string"&&(c=a.shift()),w(a[0])&&(b=a.shift()),d=a.shift();var e=H(c,function(a){function f(){var c=K(v(b),e),f;typeof d=="function"?f=d.apply(e,c):f=d,typeof f=="undefined"&&(f=e.exports),a(f)}var c=[];for(var g=0,i=b.length;g<i;g++){var j=b[g];x(["require","exports"],j)==-1&&c.push(J(j,e))}c.length>0?M.apply(this,c.concat(f)):f()});return e}function M(){var a=v(arguments),b;typeof a[a.length-1]=="function"&&(b=a.pop());var c=new E(N(a));return b&&c.then(b),c}function N(a){var b=[];for(var c=0,d;d=a[c];c++)typeof d=="string"&&(d=O(d)),w(d)&&(d=new F(N(d))),b.push(d);return b}function O(a){var b,c;for(var d=0,e;e=M.matchers[d];d++){var f=e[0],g=e[1];if(b=a.match(f))return g(a)}throw new Error(a+" was not recognised by loader")}function Q(){return a.using=n,a.provide=o,a.define=p,a.loadrunner=q,P}function S(a){if(typeof R[a]!="undefined")return R[a];for(var b=0;b<M.bundles.length;b++)for(var c in M.bundles[b])if(c!=a&&x(M.bundles[b][c],a)>-1)return R[a]=c,c;return R[a]=a,a}var c=a.attachEvent&&!a.opera,d=b.getElementsByTagName("script"),e=0,f,g=b.createElement("script"),i={},j={},k,l,m={},n=a.using,o=a.provide,p=a.define,q=a.loadrunner,r={};for(var s=0,t;t=d[s];s++)if(t.src.match(/loadrunner\.js(\?|#|$)/)){f=t;break}var w=Array.isArray||function(a){return a.constructor==Array};A.prototype.then=function(b){var c=this;return this.started||(this.started=!0,this.start()),this.completed?b.apply(a,this.results):(this.callbacks=this.callbacks||[],this.callbacks.push(b)),this},A.prototype.start=function(){},A.prototype.complete=function(){if(!this.completed){this.results=v(arguments),this.completed=!0;if(this.callbacks)for(var b=0,c;c=this.callbacks[b];b++)c.apply(a,this.results)}},B.loaded=[],B.times={},B.prototype=new A,B.prototype.resolvePath=function(a){return S(a)},B.prototype.start=function(){var a=this,b,c;return(c=j[this.id])?(c.then(function(){a.complete()}),this):((b=i[this.id])?b.then(function(){a.loaded()}):!this.force&&x(B.loaded,this.id)>-1?this.loaded():this.load(),this)},B.prototype.createScriptTag=function(){var b=this,c;i[this.id]=b,(c=r[this.path])&&b.then(function(){for(var a=0,b;b=c[a];a++)b.complete.apply(b,arguments)}),this.times={start:new Date};var f=g.cloneNode(!1);this.scriptId=f.id="LR"+ ++e,f.type="text/javascript",f.async=!0,f.onerror=function(){throw new Error(b.path+" not loaded")},f.onreadystatechange=f.onload=function(c){c=a.event||c;if(c.type=="load"||x(["loaded","complete"],this.readyState)>-1)this.onreadystatechange=null,b.loaded()},f.src=this.path,l=this,d[0].parentNode.insertBefore(f,d[0]),l=null,m[f.id]=this},B.prototype.queueScript=function(){r[this.path]=r[this.path]||[],r[this.path].push(this)},B.prototype.load=function(a){return M.autoLoad||a?this.createScriptTag():this.queueScript(),this},B.prototype.loaded=function(){this.complete()},B.prototype.complete=function(){x(B.loaded,this.id)==-1&&B.loaded.push(this.id),this.times&&(B.times[this.id]=u(this.times,{end:new Date})),delete i[this.id],A.prototype.complete.apply(this,arguments)},C.exports={},C.prototype=new B,C.prototype.resolvePath=function(a){return S(a)!=a?S(a):y(M.path,a+".js")},C.prototype.start=function(){var a,b,c=this,d;this.body?this.execute():(a=C.exports[this.id])?this.exp(a):(b=j[this.id])?b.then(function(a){c.exp(a)}):(j[this.id]=this,this.load())},C.prototype.loaded=function(){var a,b,d=this;c?(b=C.exports[this.id])?this.exp(b):(a=j[this.id])&&a.then(function(a){d.exp(a)}):(a=k,k=null,a.id=a.id||this.id,a.then(function(a){d.exp(a)}))},C.prototype.complete=function(){delete j[this.id],B.prototype.complete.apply(this,arguments)},C.prototype.execute=function(){var a=this;typeof this.body=="object"?this.exp(this.body):typeof this.body=="function"&&this.body.apply(window,[function(b){a.exp(b)}])},C.prototype.exp=function(a){this.times&&u(this.times,{eval:new Date}),this.complete(this.exports=C.exports[this.id]=a||{})},E.prototype=new A,E.prototype.start=function(){function b(){var b=[];for(var c=0,d;d=a.deps[c];c++){if(!d.completed)return;d.results.length>0&&(b=b.concat(d.results))}a.complete.apply(a,b)}var a=this;for(var c=0,d;d=this.deps[c];c++)d.then(b);return this},E.prototype.load=function(){for(var a=0,b;b=this.deps[a];a++)b.load&&b.load(!0);return this},E.prototype.as=function(a){var b=this;return this.then(function(){var c=D(b.deps),d={};for(var e=0,f;f=c[e];e++)z(d,f.id,arguments[e]);a.apply(this,[d].concat(v(arguments)))})},F.prototype=new A,F.prototype.start=function(){var a=this,b=0,c=[];return function d(){var e=a.deps[b++];e?e.then(function(a){e.results.length>0&&(c=c.concat(e.results)),d()}):a.complete.apply(a,c)}(),this},F.prototype.load=function(){var a=this,b=0;return function c(){var d=a.deps[b++];d&&d.load&&d.load(!0).then(function(){c()})}(),this},L.amd={};var P=function(a){return a(M,I,P,L)};P.Script=B,P.Module=C,P.Collection=E,P.Sequence=F,P.Dependency=A,P.noConflict=Q,a.loadrunner=P,a.using=M,a.provide=I,a.define=L,M.path="",M.autoLoad=!0,M.bundles=[];var R={};M.matchers=[],M.matchers.add=function(a,b){this.unshift([a,b])},M.matchers.add(/(^script!|\.js$)/,function(a){var b=new B(a.replace(/^\$/,M.path.replace(/\/$/,"")+"/").replace(/^script!/,""),!1);return b.id=a,b}),M.matchers.add(/^[a-zA-Z0-9_\-\/]+$/,function(a){return new C(a)}),f&&(M.path=f.getAttribute("data-path")||f.src.split(/loadrunner\.js/)[0]||"",(main=f.getAttribute("data-main"))&&M.apply(a,main.split(/\s*,\s*/)).then(function(){}))})(this,document);
+    loadrunner(function(a,b,c,d){function e(a){this.id=this.path=a}e.inProgress=[],e.done=[],e.prototype=new c.Dependency,e.prototype.start=function(){var a=this,b;(b=e.done[this.id])?this.complete(b.result):(b=e.inProgress[this.id])?b.then(function(){a.complete(b.result)}):(e.inProgress[this.id]=this,this.load())},e.prototype.load=function(){var a,b=this;if(window.XMLHttpRequest)a=new window.XMLHttpRequest;else try{a=new window.ActiveXObject("Microsoft.XMLHTTP")}catch(c){return new Error("XHR not found.")}a.onreadystatechange=function(){a.readyState==4&&(b.result=a.responseText,e.done[b.id]=b,delete e.inProgress[b.id],b.complete(b.result))},a.open("GET",this.path,!0),a.send(null)},a.matchers.add(/^json!/,function(a){return new e(a.substring(5))})});
+    loadrunner(function(a,b,c,d){function e(a){this.id=this.path=a}e.inProgress=[],e.done=[],e.prototype=new c.Dependency,e.prototype.start=function(){var a=this,b;(b=e.done[this.id])?this.complete(b.result):(b=e.inProgress[this.id])?b.then(function(){a.complete(b.result)}):(e.inProgress[this.id]=this,this.load())},e.prototype.load=function(){var b=this;a("lib/lazyload",function(a){function c(){e.done[b.id]=b,delete e.inProgress[b.id],b.complete()}$("link[href='"+b.path+"']").length>0?c():a.css(b.path,c)})},a.matchers.add(/^css!/,function(b){var c;return b=b.replace(/^css!/,""),c=/^(https?:)?\/\//.test(b),new e(b.replace(/^\//,(!c&&a.cssPath||"").replace(/\/$/,"")+"/"))})});
+    loadrunner(function(a,b,c,d){function e(a,b){for(var c=0,d;d=a[c];c++)if(b==d)return c;return-1}function f(a){var b;a.charAt(0)==">"&&(a=a.substring(1));if(b=g.inProgress[a])b.complete(),delete g.inProgress[a];g.done.push(a)}var g=function(a){this.id=a};g.inProgress=[],g.done=[],g.prototype=new c.Dependency,g.prototype.start=function(){var a,b=this;e(g.done,this.id)!=-1?this.complete():(a=g.inProgress[this.id])?a.then(function(){b.complete()}):g.inProgress[this.id]=this},a.matchers.add(/^>/,function(a){return new g(a.substring(1))}),window.signal=f});
+});</script><script>WATCH.end('loadrunner');</script>
+
+
+
+  
+    <script type="text/javascript">WATCH('javascript_logged_out', function() {
+      
+function miniScribe(eName,more,cat){
+var log=[],cat=cat||'client_event',more=more||{};more.event_name=eName;for(var k in more){log.push('"'+k+'":"'+more[k]+'"');};
+(new Image()).src='//scribe.twitter.com/scribe?category='+encodeURIComponent(cat)+'&log='+encodeURIComponent('{'+log.join(',')+'}')+'&ts='+(+new Date);
+}
+      (function(){function a(a,b){var c=a.tagName?a:document.getElementById(a);return b?c.getElementsByTagName(b):c}function b(a,b,c){for(var d=a.length-1;d>=0;d--){var e=a[d].className,f=e&&e.match(b);f&&c.call(a[d],f[1])}}function c(a,b){return a.className=a.className.replace(" "+b,"")}function d(a,b){return a.className=c(a,b)+" "+b}var e=document.body,f=document.getElementById("doc"),g;location.href.match(/#!\/./)?(g=location.href.match(/#!?\/(login|download)(\/|$)/))&&d(f,"route-"+g[1]):(c(e,"user-style-twttr loading-body"),d(e,"front-page"),miniScribe("web:front:::impression",{context:"front"}),window._scribedFrontImpression=!0);var i=a(f,"div"),j="hasome";b(i,/holding/,function(){var b=this,e=a(b,"input")[0],f=a(b,"span")[0];e&&f&&(f.onclick=function(){e.focus()},e.onblur=function(){e.value.length||c(b,j)},e.onkeydown=function(a){setTimeout(function(){a&&a.keyCode===8||e.value.length?d(b,j):c(b,j)},0)})}),window.setInterval(function(){b(i,/holding/,function(){var b=a(this,"input")[0];b&&b.value.length&&d(this,j)})},1111);var k={signin:"web:front:login_callout:form:login_click",signup:"web:front:signup_callout:form:signup_click",search:"web:front:main:search_field:search",language:"web:front:footer:language_selector:select"};b(i,/js-front-(signin|signup|search|language)/,function(b){var c=a(this,"form"),d=k[b];c&&c[0]&&(c[0].onsubmit=function(){a(f).className.match("route-front")||miniScribe(d)})})})();
+    });</script>
+    <script type="text/javascript">WATCH.end('javascript_logged_out');</script>
+  
+
+
+
+
+<script>WATCH('boot', function() {
+  using.cssPath = 'http://a0.twimg.com/a/1337387412/';
+  using.path = 'http://a0.twimg.com/a/1337387412/phoenix/js';
+  using.autoLoad = false;
+
+  
+
+  provide("boot/init",function(a){function c(a){for(var b in a)a.hasOwnProperty(b)&&(twttr[b]=a[b])}function d(a){twttr.bootTimings&&twttr.bootTimings.add("bootstrap_data process start"),c(a.twttr),signal(">payload"),a.boomr&&using(a.boomr.js).load().then(function(){delete BOOMR.plugins.RT,BOOMR.init({allow_ssl:!0,autorun:!1,user_ip:twttr.remoteIP,BW:{base_url:a.boomr.base_url}}),using(">setupComplete","util").as(function(b){setTimeout(BOOMR.page_ready(),1e4),BOOMR.subscribe("before_beacon",function(c){if(!c.bw)return;var d=parseInt(c.bw/1024,10),e=parseInt(c.bw_err*100/c.bw,10),f=parseInt(c.lat_err*100/c.lat,10);scribble("measurement",{load_time_ms:c.t_done,bandwidth_kbytes:d,bandwidth_error_percent:e,latency_ms:c.lat,latency_error_percent:f,product:"webclient",base_url:a.boomr.base_url},"boomerang"),b.util.params().boomr&&twttr.showMessage("Bandwidth: "+b.util.addCommas(d)+" KB/s &plusmn; "+e+"%<br />Latency: "+c.lat+" ms &plusmn; "+c.lat_err,!0)})})}),a.countryCode&&(twttr.countryCode=a.countryCode);if(a.countries){twttr.countries=a.countries;if(twttr.countryCode)for(var b=0,d=twttr.countries.length;b<d;b++)twttr.countries[b].code==twttr.countryCode&&(twttr.countries[b].selected=!0)}a.pageLocaleJS?(twttr.bootTimings&&twttr.bootTimings.add("i18n fetch start"),using(a.pageLocaleJS).load().then(function(){twttr.bootTimings&&twttr.bootTimings.add("i18n fetch finish"),signal(">languageData")})):signal(">languageData"),using(">defaultViews",twttr.bundleMore,function(){a.showWelcomeBanner&&(new twttr.views.WelcomeToPhoenixBanner).render($("#banners"),"append"),a.flashNotice&&twttr.showMessage(a.flashNotice,!0)}),using(">decider",function(){twttr.decider._updateFeatures(a.deciderFeatures,!0)}),using(">ab_decider",function(){twttr.abdecider._updateExperiments(a.abBuckets,!0)}),using(">api_ready",function(){twttr.API.setConfig({postAuthenticityToken:a.postAuthenticityToken}),$("input.authenticity_token").val(a.postAuthenticityToken);var b=a.requestCacheSeedData;for(var c=0,d=b.length;c<d;++c){var e=b[c];twttr.API._requestCache.inject(e.api_request_name,e.options,e.json,1)}signal(">request_cache_seeded"),a.homeTimelineFetchSize&&(twttr.API.homeTimelineFetchSize=a.homeTimelineFetchSize)}),twttr.bootTimings&&twttr.bootTimings.add("bootstrap_data process finish")}function e(){twttr.loggedIn?(twttr.bootTimings&&twttr.bootTimings.add("initCurrentUser start"),using("boot/bootstrap_data",">request_cache_seeded",function(a){twttr.API.User.current({error:function(){window.location.reload(!0)},success:function(b){twttr.currentUser=b;for(var c in a.userProperties)twttr.currentUser.sync(c,a.userProperties[c]||!1);twttr.API.User.bind("update",function(a,b){if(twttr.currentUser.id==b.id){var c=["name","url","location","description"];for(var d=0;d<c.length;++d)twttr.currentUser.sync(c[d],b[c[d]])}}),twttr.bootTimings&&twttr.bootTimings.add("initCurrentUser finish"),signal(">allCurrentUserDataLoaded")}})})):signal(">allCurrentUserDataLoaded")}function f(a){var b=new Date;using(a).load().then(function(){var a=new Date;using("boot/bootstrap_data",function(){twttr.Profiler.logPreviousEvent("twttr.bundles fetched",b,a)})})}function g(a){function c(){b||setTimeout(function(){twttr.keynoteTTFTPing(),b=!0,a()},0)}function d(){setTimeout(c,0)}function f(){e.onresize=null,d()}var b=!1,e=document.getElementById("stream-items-id");if(!e){a();return}if(e.clientHeight>0){d();return}e.onresize=f}function i(a){for(var b in a)return!1;return!0}function j(a){function d(){clearTimeout(c),$(b).remove(),twttr.app.recalculatePadding()}function e(){b.style.display="block",setTimeout(function(){b.style.height="46px"})}if(!a)return;var b=document.getElementById("slow-load-banner");if(!b)return;var c;c=setTimeout(e,a),twttr.bundleCore&&using(twttr.bundleCore,d)}var b={add:function(a,b){b||(b=new Date),twttr.bootTimings.data.push({name:a,timestamp:b})},data:[],done:function(){twttr.bootTimings.add=twttr.bootTimings.done=$.noop,$.each(loadrunner.Script.times,function(a,b){$.each(b,function(b,c){twttr.bootTimings.data.push({name:["bundle",a,b].join(" "),timestamp:c})})}),twttr.Profiler.logDataSet("Boot",twttr.appStartTime,twttr.bootTimings.data),twttr.bootTimings=null}};a({init:function(a){if(a.renderedOnServer){var k=document.getElementsByTagName("html")[0],l=k.className.match(/highlight-global-nav-([a-z]+)/);if(a.twttr.loggedIn&&l){var m="global-nav-"+l[1];document.getElementById(m).className+=" active"}else if(k.className.match(/remove-prerendered-content/)){document.getElementById("page-outer").className=document.getElementById("page-outer").className.replace("flush-to-top","");var n=document.getElementById("page-container");n.className=n.className.replace("home-container",""),n.innerHTML="",signal(">wokeUp"),a.renderedOnServer=!1}k.className=k.className.replace("use-prerendered-content","").replace("remove-prerendered-content",""),k.getAttribute("data-nav-highlight-class-name")&&(k.className=k.className.replace(k.getAttribute("data-nav-highlight-class-name"),""),k.removeAttribute("data-nav-highlight-class-name"))}if(a.disablePhoenix){j(a.loadTimeoutInterval);return}c(a.twttr),twttr.appStartTime=document.startTime,twttr.geo=twttr.geo||{},twttr.session=twttr.session||{},twttr.session.impressionId=twttr.appStartTime+Math.random(),twttr.isLocalhost=location.hostname.match(/localhost\.twitter\.com/);if(twttr.allScribeEvents)try{twttr.allScribeEvents=JSON.parse(localStorage.twttrAllScribeEvents)||[]}catch(o){twttr.allScribeEvents=[]}twttr.bootTimings=a.profiling?b:null;for(var p=0;p<a.loadrunnerAssets.length;p++)using.bundles.push(a.loadrunnerAssets[p]);a.loadrunnerAssets.length==1&&i(a.loadrunnerAssets[0])&&(using.autoLoad=!0),j(a.loadTimeoutInterval),twttr.proto=window.location.protocol.replace(":",""),twttr.isSSL=function(){return twttr.proto==="https"},twttr.createIframe=function(a,b){var c=document.createElement("div");c.innerHTML='<iframe tabindex="-1" role="presentation" style="position:absolute;top:-9999px;" src="'+a+'"></iframe>';var d=c.firstChild,e=function(){b.apply(d,arguments)};return d.addEventListener?d.addEventListener("load",e,!1):d.attachEvent("onload",e),document.body.insertBefore(d,document.body.firstChild),d},a.inline_bootstrap_data||provide("boot/bootstrap_data",function(a){var b=[];b.push("json!/account/bootstrap_data"+window.location.search+(window.location.search?"&":"?")+"r="+Math.random()),typeof JSON=="undefined"&&b.push(twttr.bundleCore),twttr.bootTimings&&twttr.bootTimings.add("bootstrap_data fetch start"),using(b,function(b){twttr.bootTimings&&twttr.bootTimings.add("bootstrap_data fetch finish");var c=JSON.parse(b);a(c)})}),f(a.assets),using(twttr.bundleCore,function(){twttr.anywhere.remote={},using("bluejs/api",function(a){twttr.API=a,twttr.API.setConfig({cacheObjects:!0,includeEntities:!0}),twttr.extendAPI(),signal(">api_ready"),using(">request_cache_seeded",function(){e()})})}),using(a.setupDependencies,function(){twttr.bootTimings&&twttr.bootTimings.add("setup start"),jQuery.ready(),jQuery.fx.interval=50,twttr.setup(a.renderedOnServer),twttr.bootTimings&&twttr.bootTimings.add("setup finish"),signal(">setupComplete");var b=function(){using(twttr.bundleMore).load()};$.browser.msie&&parseInt($.browser.version,10)<=8?g(b):b()}),using(twttr.bundleMore,function(){signal(">allCodeLoaded")}),using("boot/bootstrap_data",d),twttr.createIframe(a.pReceiverURL,function(){var a=this;using(twttr.bundleCore,function(){twttr.anywhere.remote.server=a,twttr.anywhere.api.util.RemoteRequest.flush()})})}})});
+  
+  using('boot/init', function(boot) {
+    var data = {"assets":["bundle\/t1-hogan-core"],"setupDependencies":["\u003EallCurrentUserDataLoaded","\u003Erequest_cache_seeded","bundle\/t1-hogan-core","\u003ElanguageData"],"inline_bootstrap_data":false,"sandboxes":{"jsonp":"http:\/\/a0.twimg.com\/a\/1337387412\/jsonp_sandbox.html","detailsPaneContent":"http:\/\/a0.twimg.com\/a\/1337387412\/details_pane_content_sandbox.html"},"loadrunnerAssets":[{"http:\/\/a0.twimg.com\/c\/phoenix\/en\/bundle\/t1-core.fc8a2ee5a01a3fc602f98d2fc332d945.js":["bundle\/t1-core"],"http:\/\/a0.twimg.com\/c\/phoenix\/en\/bundle\/ie6.cc70d16bf3965385e5f2eca6331771f0.js":["bundle\/ie6"],"http:\/\/a0.twimg.com\/c\/phoenix\/en\/bundle\/signup.2d2fbbb10491342c279e6dd6a893888a.js":["bundle\/signup"],"http:\/\/a0.twimg.com\/c\/phoenix\/en\/bundle\/sandbox.942b7155fd2d91ee413e6345905ae8e9.js":["bundle\/sandbox"],"http:\/\/a0.twimg.com\/c\/phoenix\/en\/bundle\/t1-more.06e0bb85a4ed997167eeb74ff4fd49df.js":["bundle\/t1-more"],"http:\/\/a0.twimg.com\/c\/phoenix\/en\/bundle\/t1-hogan-core.417958301d89509a3fcc3dd28191a573.js":["bundle\/t1-hogan-core"],"http:\/\/a0.twimg.com\/c\/phoenix\/en\/bundle\/t1-hogan-more.6706ca57d175fce07f6264c276bffdd4.js":["bundle\/t1-hogan-more"]}],"loadTimeoutInterval":10000,"disablePhoenix":false,"pReceiverURL":"http:\/\/api.twitter.com\/receiver.html","profiling":false,"twttr":{"domains":{"local":"twitter.com","upload":"upload.twitter.com","remote":"api.twitter.com"},"bundleMore":"bundle\/t1-hogan-more","placeDataPrefix":"http:\/\/geo.l3.twitter.com\/places\/autocomplete_places-","hosts":{"local":"http:\/\/twitter.com","upload":"http:\/\/upload.twitter.com","remote":"http:\/\/api.twitter.com"},"loggedIn":false,"remoteIP":"69.33.74.43","isT1":true,"requestFullCity":"us,fl,orlando","hasHoversInCss":true,"isRTL":false,"expando":false,"bundleCore":"bundle\/t1-hogan-core"},"renderedOnServer":true};
+    boot.init(data);
+  });
+});</script><script>WATCH.end('boot');</script>
+
+
+
+<!--[if lte IE 6]>
+  <script>using('bundle/ie6').load();</script>
+<![endif]-->
+
+
+
+
+
+
+
+</body>
