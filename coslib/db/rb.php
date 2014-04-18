@@ -54,7 +54,8 @@ class db_rb {
             RedBean_ModelHelper::setModelFormatter($formatter);
             
             R::setup($url, $username,$password); //mysql
-            if (config::getMainIni('rb_freeze')) {
+            $freeze = config::getMainIni('rb_freeze');
+            if ($freeze == 1) {
                 R::freeze(true);
             }
             $connected = true;
